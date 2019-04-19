@@ -1,4 +1,5 @@
-import {saveQuestionAnswerAPI} from "../api"
+import { saveQuestionAnswerAPI } from "../utils/api";
+import { showLoading, hideLoading } from "react-redux-loading";
 
 export const RECEIVE_QUESTIONANSWERS = "RECEIVE_QUESTIONANSWERS";
 export const SAVE_QUESTIONANSWER = "SAVE_QUESTIONANSWER";
@@ -10,23 +11,25 @@ export function receiveQuestionAnswers(questionAnswers) {
   };
 }
 
-const saveQuestionAnswer = questionAnswer =>{
+const saveQuestionAnswer = questionAnswer => {
   return {
-      type: SAVE_QUESTIONANSWER,
-      questionAnswer
+    type: SAVE_QUESTIONANSWER,
+    questionAnswer
   };
-}
+};
 
-export const handleSaveQuestionAnswer = (optionOneText, optionTwoText) =>{
+export const handleSaveQuestionAnswer = (optionOneText, optionTwoText) => {
   return (dispatch, getState) => {
-      const {authedUser} = getState();
+    const { authedUser } = getState();
 
-      return saveQuestionAnswerAPI({
-                  author: authedUser,
-                  optionOneText,
-                  optionTwoText
-              })
-              .then(questionAnswer => dispatch(saveQuestionAnswer(questionAnswer)))
-  }
+    dispatch(showLoading());
 
-}
+    return saveQuestionAnswerAPI({
+      author: authedUser,
+      optionOneText,
+      optionTwoText
+    })
+      .then(questionAnswer => dispatch(saveQuestionAnswer(questionAnswer)))
+      .then(() => dispatch(hideLoading()));
+  };
+};

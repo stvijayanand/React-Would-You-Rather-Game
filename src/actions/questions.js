@@ -1,8 +1,7 @@
-import {saveQuestions, saveQuestionAnswers} from "../api"
+import {saveQuestionAPT} from "../api"
 
 export const RECEIVE_QUESTIONS = "RECEIVE_QUESTIONS";
 export const SAVE_QUESTION = "SAVE_QUESTION";
-export const SAVE_QUESTIONANSWER = "SAVE_QUESTIONANSWER";
 
 export function receiveQuestions(questions) {
   return {
@@ -22,7 +21,7 @@ export const handleSaveQuestion = (optionOneText, optionTwoText) =>{
   return (dispatch, getState) => {
       const {authedUser} = getState();
 
-      return saveQuestion({
+      return saveQuestionAPT({
                   author: authedUser,
                   optionOneText,
                   optionTwoText

@@ -7,30 +7,43 @@ class NewQuestion extends Component {
     optionOneText: "",
     optionTwoText: ""
   };
-  //   handleChange = e => {
-  //     const text = e.target.value;
 
-  //     this.setState(() => ({
-  //       text
-  //     }));
-  //   };
+  handleChange = e => {
+    const text = e.target.value;
+    const name = e.target.name;
+
+    if (name === "option1") {
+      this.setState(prevState => ({
+        ...prevState,
+        optionOneText: text
+      }));
+    } else {
+      this.setState(prevState => ({
+        ...prevState,
+        optionTwoText: text
+      }));
+    }
+  };
+
   handleSubmit = e => {
     e.preventDefault();
 
-    //   const { text } = this.state;
+    const { optionOneText, optionTwoText } = this.state;
+    const { dispatch } = this.props;
 
-    //   const { dispatch, id } = this.props;
-    //   dispatch(handleSaveTweet(text, id));
+    dispatch(handleSaveQuestion(optionOneText, optionTwoText));
 
-    //   this.setState(() => ({
-    //     text: "",
-    //     toHome: id ? false : true
-    //   }));
+    this.setState(() => ({
+      optionOneText: "",
+      optionTwoText: ""
+    }));
   };
+
   render() {
     const { optionOneText, optionTwoText } = this.state;
 
-    //const tweetLeft = 280 - optionOneText.length;
+    const optionOneTextLeft = 60 - optionOneText.length;
+    const optionTwoTextLeft = 60 - optionTwoText.length;
 
     return (
       <div className="form-container center">
@@ -41,12 +54,16 @@ class NewQuestion extends Component {
               Option 1:
               <input
                 placeholder="do this"
+                name="option1"
                 value={optionOneText}
                 onChange={this.handleChange}
                 className="text"
-                maxLength={100}
+                maxLength={60}
               />
             </label>
+            {optionOneTextLeft <= 20 && (
+              <span className="question-length">{optionOneTextLeft}</span>
+            )}
           </div>
 
           <div className="form-row">
@@ -54,15 +71,18 @@ class NewQuestion extends Component {
               Option 2:
               <input
                 placeholder="do that"
+                name="option2"
                 value={optionTwoText}
                 onChange={this.handleChange}
                 className="text"
-                maxLength={100}
+                maxLength={60}
               />
             </label>
+            {optionTwoTextLeft <= 20 && (
+              <span className="question-length">{optionTwoTextLeft}</span>
+            )}
           </div>
 
-          {/* {tweetLeft <= 100 && <div className="tweet-length">{tweetLeft}</div>} */}
           <button
             className="btn-new"
             type="submit"

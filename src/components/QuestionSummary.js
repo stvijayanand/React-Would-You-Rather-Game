@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import users from "../reducers/users";
 
 class QuestionSummary extends Component {
   viewPoll = (e, id) => {

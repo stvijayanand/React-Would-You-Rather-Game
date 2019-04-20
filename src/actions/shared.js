@@ -15,7 +15,7 @@ export default function handleInitialData() {
       dispatch(setAuthedUser(AUTHED_ID));
       dispatch(hideLoading());
 
-      console.log(Object.keys(questions).length);
+      //console.log(Object.keys(questions).length);
     });
   };
 }

@@ -4,6 +4,7 @@ import handleInitialData from "../actions/shared";
 import LoadingBar from "react-redux-loading";
 import DashBoard from "./Dashboard";
 import NewQuestion from "./NewQuestion";
+import Question from "./Question";
 
 class App extends Component {
   componentDidMount() {
@@ -14,7 +15,7 @@ class App extends Component {
     return (
       <div className="App">
         <LoadingBar />
-        <NewQuestion />
+        <Question match={{ params: { id: "8xf0y6ziyjabvozdd253nd" } }} />
       </div>
     );
   }

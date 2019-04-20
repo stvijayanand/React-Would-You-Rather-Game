@@ -16,7 +16,7 @@ class QuestionSummary extends Component {
 
     const { optionOne } = question;
     let summaryText = optionOne.text.substring(0, 26);
-    summaryText += summaryText + "...";
+    summaryText += "...";
 
     const { name, avatarURL } = author;
 

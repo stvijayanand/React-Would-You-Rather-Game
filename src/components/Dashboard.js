@@ -8,7 +8,7 @@ class Dashboard extends Component {
       <div>
         <h3 className="center">Polls</h3>
         <ul className="dashboard-list">
-          {this.props.questionIds.map(id => (
+          {this.props.unansweredQuestionIds.map(id => (
             <li key={id}>
               <QuestionSummary id={id} />
             </li>
@@ -19,11 +19,26 @@ class Dashboard extends Component {
   }
 }
 
-const mapStateToProps = ({ questions }) => {
+const mapStateToProps = ({ questions, authedUser }) => {
+  const unansweredQuestions = Object.values(questions).filter(
+    q =>
+      !q.optionOne.votes.includes(authedUser) &&
+      !q.optionTwo.votes.includes(authedUser)
+  );
+
+  const answeredQuestions = Object.values(questions).filter(
+    q =>
+      q.optionOne.votes.includes(authedUser) ||
+      q.optionTwo.votes.includes(authedUser)
+  );
+
   return {
-    questionIds: Object.keys(questions).sort(
-      (a, b) => questions[b].timestamp - questions[a].timestamp
-    )
+    unansweredQuestionIds: unansweredQuestions
+      .map(uq => uq.id)
+      .sort((a, b) => questions[b].timestamp - questions[a].timestamp),
+    answeredQuestionIds: answeredQuestions
+      .map(aq => aq.id)
+      .sort((a, b) => questions[b].timestamp - questions[a].timestamp)
   };
 };
 

@@ -6,8 +6,8 @@ export function formatQuestion(question, user, authedUser) {
     name,
     id,
     timestamp,
-    optionOneText: optionOne.optionOneText,
-    optionTwoText: optionTwo.optionTwoText,
+    optionOneText: optionOne.text,
+    optionTwoText: optionTwo.text,
     avatar: avatarURL
   };
 }

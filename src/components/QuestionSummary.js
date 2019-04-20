@@ -20,8 +20,8 @@ class QuestionSummary extends Component {
     const { name, avatarURL } = author;
 
     return (
-      <div className="question">
-        <div className="question-view-header">
+      <div className="question-summary">
+        <div className="question-header">
           <span>
             <img src={avatarURL} alt={`Avatar of ${name}`} className="avatar" />
           </span>

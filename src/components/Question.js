@@ -4,7 +4,13 @@ import { formatQuestion } from "../utils/helpers";
 
 class Question extends Component {
   render() {
-    return <div />;
+    const { authedUser, question } = this.props;
+
+    return (
+      <div>
+        <span>{question.avatar}</span>
+      </div>
+    );
   }
 }
 

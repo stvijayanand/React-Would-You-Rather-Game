@@ -15,10 +15,18 @@ class App extends Component {
     return (
       <div className="App">
         <LoadingBar />
-        <Question match={{ params: { id: "8xf0y6ziyjabvozdd253nd" } }} />
+        {this.props.loading === true ? null : (
+          <Question match={{ params: { id: "8xf0y6ziyjabvozdd253nd" } }} />
+        )}
       </div>
     );
   }
 }
 
-export default connect()(App);
+const mapStateToProps = ({ authedUser }) => {
+  return {
+    loading: authedUser === null
+  };
+};
+
+export default connect(mapStateToProps)(App);

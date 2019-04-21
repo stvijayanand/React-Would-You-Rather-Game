@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { formatQuestion } from "../utils/helpers";
+import { formatQuestion, OPTION_ONE, OPTION_TWO } from "../utils/helpers";
 import { handleSaveQuestionAnswer } from "../actions/questionAnswers";
 
 class UnansweredQuestion extends Component {
   state = {
-    selectedAnswer: ""
+    selectedAnswer: this.props.question.optionOneText
   };
 
   handleAnswerChange = e => {
@@ -19,8 +19,16 @@ class UnansweredQuestion extends Component {
 
     const { selectedAnswer } = this.state;
     const { dispatch, question } = this.props;
+    const { optionOneText } = question;
+    let answer = "";
 
-    dispatch(handleSaveQuestionAnswer(question.id, selectedAnswer));
+    if (selectedAnswer === optionOneText) {
+      answer = OPTION_ONE;
+    } else {
+      answer = OPTION_TWO;
+    }
+
+    dispatch(handleSaveQuestionAnswer(question.id, answer));
 
     this.setState(() => ({
       selectedAnswer: ""
@@ -28,7 +36,7 @@ class UnansweredQuestion extends Component {
   };
 
   render() {
-    const { authedUser, question } = this.props;
+    const { question } = this.props;
     const { avatar, name, optionOneText, optionTwoText } = question;
     const { selectedAnswer } = this.state;
 

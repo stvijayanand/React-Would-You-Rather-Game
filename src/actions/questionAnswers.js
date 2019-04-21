@@ -25,11 +25,13 @@ export const handleSaveQuestionAnswer = (qid, answer) => {
     dispatch(showLoading());
 
     return saveQuestionAnswerAPI({
-      author: authedUser,
+      authedUser,
       qid,
       answer
     })
-      .then(questionAnswer => dispatch(saveQuestionAnswer(questionAnswer)))
+      .then(questionAnswer => {
+        dispatch(saveQuestionAnswer(questionAnswer));
+      })
       .then(() => dispatch(hideLoading()));
   };
 };

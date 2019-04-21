@@ -25,7 +25,7 @@ class NewQuestion extends Component {
     }
   };
 
-  handleSubmit = e => {
+  handleAddPoll = e => {
     e.preventDefault();
 
     const { optionOneText, optionTwoText } = this.state;
@@ -48,7 +48,7 @@ class NewQuestion extends Component {
     return (
       <div className="form-container center">
         <h3>Would you rather?</h3>
-        <form className="form" onSubmit={this.handleSubmit}>
+        <form className="form" onSubmit={this.handleAddPoll}>
           <div className="form-row">
             <label>
               Option 1:

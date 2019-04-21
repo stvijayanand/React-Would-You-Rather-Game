@@ -18,7 +18,7 @@ const saveQuestionAnswer = questionAnswer => {
   };
 };
 
-export const handleSaveQuestionAnswer = (optionOneText, optionTwoText) => {
+export const handleSaveQuestionAnswer = (qid, answer) => {
   return (dispatch, getState) => {
     const { authedUser } = getState();
 
@@ -26,8 +26,8 @@ export const handleSaveQuestionAnswer = (optionOneText, optionTwoText) => {
 
     return saveQuestionAnswerAPI({
       author: authedUser,
-      optionOneText,
-      optionTwoText
+      qid,
+      answer
     })
       .then(questionAnswer => dispatch(saveQuestionAnswer(questionAnswer)))
       .then(() => dispatch(hideLoading()));

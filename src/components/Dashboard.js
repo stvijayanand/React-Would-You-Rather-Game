@@ -42,7 +42,7 @@ class Dashboard extends Component {
               checked={selectedOption === UNANSWERED_POLLS}
               onChange={this.handleOptionChange}
             />
-            <label for="unanswered-id">Unanswered Polls</label>
+            <label htmlFor="unanswered-id">Unanswered Polls</label>
           </span>
           <span>
             <input
@@ -53,7 +53,7 @@ class Dashboard extends Component {
               checked={selectedOption === ANSWERED_POLLS}
               onChange={this.handleOptionChange}
             />
-            <label for="answered-id">Answered Polls</label>
+            <label htmlFor="answered-id">Answered Polls</label>
           </span>
         </div>
         <div>

@@ -5,6 +5,7 @@ import LoadingBar from "react-redux-loading";
 import DashBoard from "./Dashboard";
 import NewQuestion from "./NewQuestion";
 import Question from "./Question";
+import LeaderBoard from "./LeaderBoard";
 
 class App extends Component {
   componentDidMount() {
@@ -16,7 +17,7 @@ class App extends Component {
       <div className="App">
         <LoadingBar />
         {this.props.loading === true ? null : (
-          <Question match={{ params: { id: "8xf0y6ziyjabvozdd253nd" } }} />
+          <LeaderBoard></LeaderBoard>
         )}
       </div>
     );

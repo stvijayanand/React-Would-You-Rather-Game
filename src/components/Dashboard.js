@@ -85,11 +85,11 @@ const mapStateToProps = ({ questions, authedUser }) => {
 
   return {
     unansweredQuestionIds: unansweredQuestions
-      .map(uq => uq.id)
-      .sort((a, b) => questions[b].timestamp - questions[a].timestamp),
-    answeredQuestionIds: answeredQuestions
-      .map(aq => aq.id)
       .sort((a, b) => questions[b].timestamp - questions[a].timestamp)
+      .map(uq => uq.id),
+    answeredQuestionIds: answeredQuestions
+      .sort((a, b) => questions[b].timestamp - questions[a].timestamp)
+      .map(aq => aq.id)
   };
 };
 

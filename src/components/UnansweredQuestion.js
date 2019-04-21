@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { formatQuestion, OPTION_ONE, OPTION_TWO } from "../utils/helpers";
-import { handleSaveQuestionAnswer } from "../actions/questionAnswers";
+import { handleSaveQuestionAnswer } from "../actions/questions";
 
 class UnansweredQuestion extends Component {
   state = {

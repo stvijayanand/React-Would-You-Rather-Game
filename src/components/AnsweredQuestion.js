@@ -17,7 +17,9 @@ class AnsweredQuestion extends Component {
       optionTwoVotes
     } = question;
 
-    const now = 60;
+    const totalVotes = optionOneVotes.length + optionTwoVotes.length;
+    const optionOnePercent = (optionOneVotes.length / totalVotes) * 100;
+    const optionTwoPercent = (optionTwoVotes.length / totalVotes) * 100;
 
     return (
       <div>
@@ -40,9 +42,14 @@ class AnsweredQuestion extends Component {
               <hr className="option-line" />
 
               <div className="option-body-row">
-                <ProgressBar now={now} label={`${now}%`} />
+                <ProgressBar
+                  now={optionOnePercent}
+                  label={`${optionOnePercent}%`}
+                />
               </div>
-              <div className="option-body-row">1 of 3 votes</div>
+              <div className="option-body-row">
+                {optionOneVotes.length} of {totalVotes} votes
+              </div>
             </div>
           </div>
           <div className="option-body">
@@ -51,9 +58,14 @@ class AnsweredQuestion extends Component {
               <hr className="option-line" />
 
               <div className="option-body-row">
-                <ProgressBar now={now} label={`${now}%`} />
+                <ProgressBar
+                  now={optionTwoPercent}
+                  label={`${optionTwoPercent}%`}
+                />
               </div>
-              <div className="option-body-row">2 of 3 votes</div>
+              <div className="option-body-row">
+                {optionTwoVotes.length} of {totalVotes} votes
+              </div>
             </div>
           </div>
         </div>

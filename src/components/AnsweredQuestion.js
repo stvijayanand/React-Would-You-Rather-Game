@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { formatQuestion } from "../utils/helpers";
+import ProgressBar from "react-bootstrap/ProgressBar";
+import { FaCheck } from "react-icons/fa";
 
 class AnsweredQuestion extends Component {
   render() {
@@ -15,7 +17,48 @@ class AnsweredQuestion extends Component {
       optionTwoVotes
     } = question;
 
-    return <div />;
+    const now = 60;
+
+    return (
+      <div>
+        <div className="option-container">
+          <div className="option-header">
+            <span>
+              <img src={avatar} alt={`Avatar of ${name}`} className="avatar" />
+            </span>
+            <span className="option-header-name">Asked by {name}</span>
+          </div>
+
+          <div className="option-body">
+            <div>
+              <div className="option-your-vote">
+                {optionOneText}
+                <span>
+                  (<FaCheck /> Your vote)
+                </span>
+              </div>
+              <hr className="option-line" />
+
+              <div className="option-body-row">
+                <ProgressBar now={now} label={`${now}%`} />
+              </div>
+              <div className="option-body-row">1 of 3 votes</div>
+            </div>
+          </div>
+          <div className="option-body">
+            <div>
+              <div>{optionTwoText}</div>
+              <hr className="option-line" />
+
+              <div className="option-body-row">
+                <ProgressBar now={now} label={`${now}%`} />
+              </div>
+              <div className="option-body-row">2 of 3 votes</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
   }
 }
 

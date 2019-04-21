@@ -51,7 +51,7 @@ class UnansweredQuestion extends Component {
           </div>
 
           <div className="question-body">
-            <div className="question-text center">Would you rather?</div>
+            <div className="question-text center">Would you rather...</div>
 
             <form className="form" onSubmit={this.handleSubmit}>
               <div>

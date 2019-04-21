@@ -163,10 +163,10 @@ li {
 }
 
 .option-container {
-  width: 100%;
+  width: 50%;
   max-width: 590px;
   padding: 10px;
-  display: flex;
+  display: block;
   margin: 10px auto;
   border: 1px solid #dad7d7;
   border-radius: 3px;
@@ -175,8 +175,46 @@ li {
 
 .option-header {
   width: 100%;
+  display: flex;
 }
 
-.option-header-line {
+.option-header-name {
+  margin-left: 10px;
+  margin-top: 20px;
+}
+
+.option-line {
   border-top: 1px solid #dad7d7;
+}
+
+.option-body {
+  padding: 10px;
+  margin: 10px auto;
+  border: 1px solid #dad7d7;
+  border-radius: 3px;
+}
+.option-body-row {
+  margin-top: 10px;
+  padding: 10px;
+}
+
+.option-your-vote {
+  color: green;
+  font-weight: bold;
+}
+
+.option-your-vote span {
+  margin-left: 200px;
+}
+
+.option-other-vote {
+}
+
+.progress {
+  background-color: grey;
+}
+
+.progress-bar {
+  background-color: blue;
+  color: white;
 }

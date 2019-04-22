@@ -210,8 +210,8 @@ li {
   font-weight: bold;
 }
 
-.option-your-vote span {
-  margin-left: 200px;
+.vote-icon {
+  margin-left: 20px;
 }
 
 .option-other-vote {

@@ -6,7 +6,7 @@ import { FaCheck } from "react-icons/fa";
 
 class AnsweredQuestion extends Component {
   render() {
-    const { question } = this.props;
+    const { authedUser, question } = this.props;
 
     const {
       avatar,
@@ -21,6 +21,8 @@ class AnsweredQuestion extends Component {
     const optionOnePercent = (optionOneVotes.length / totalVotes) * 100;
     const optionTwoPercent = (optionTwoVotes.length / totalVotes) * 100;
 
+    const optionOneYourVote = optionOneVotes.includes(authedUser);
+
     return (
       <div>
         <div className="option-container">
@@ -33,11 +35,12 @@ class AnsweredQuestion extends Component {
 
           <div className="option-body">
             <div>
-              <div className="option-your-vote">
-                {optionOneText}
-                <span>
-                  (<FaCheck /> Your vote)
-                </span>
+              <div className={optionOneYourVote ? "option-your-vote" : ""}>
+                <span>{optionOneText}</span>
+                {(optionOneYourVote === true) &&
+                  <span className="vote-icon">
+                    (<FaCheck /> Your vote)
+                </span>}
               </div>
               <hr className="option-line" />
 
@@ -53,8 +56,12 @@ class AnsweredQuestion extends Component {
             </div>
           </div>
           <div className="option-body">
-            <div>
-              <div>{optionTwoText}</div>
+            <div className={!optionOneYourVote ? "option-your-vote" : ""}>
+              <span>{optionTwoText}</span>
+              {(optionOneYourVote === false) &&
+                <span className="vote-icon">
+                  (<FaCheck /> Your vote)
+              </span>}
               <hr className="option-line" />
 
               <div className="option-body-row">

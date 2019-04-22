@@ -1,9 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Link, withRouter } from "react-router-dom";
 
 class QuestionSummary extends Component {
   viewPoll = (e, id) => {
     e.preventDefault();
+
+    this.props.history.push(`/questions/${id}`);
   };
 
   render() {
@@ -13,7 +16,7 @@ class QuestionSummary extends Component {
       return <p>This question doesn't exist</p>;
     }
 
-    const { optionOne } = question;
+    const { id, optionOne } = question;
     let summaryText = optionOne.text.substring(0, 26);
     summaryText += "...";
 
@@ -35,7 +38,10 @@ class QuestionSummary extends Component {
                 <p>{summaryText}</p>
               </div>
               <div className="question-icons">
-                <button className="view-button" onClick={this.viewPoll}>
+                <button
+                  className="view-button"
+                  onClick={e => this.viewPoll(e, id)}
+                >
                   View Poll
                 </button>
               </div>
@@ -57,4 +63,4 @@ const mapStateToProps = ({ authedUser, questions, users }, { id }) => {
   };
 };
 
-export default connect(mapStateToProps)(QuestionSummary);
+export default withRouter(connect(mapStateToProps)(QuestionSummary));

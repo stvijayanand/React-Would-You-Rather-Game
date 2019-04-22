@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { handleSaveQuestion } from "../actions/questions";
+import { Redirect } from "react-router-dom";
 
 class NewQuestion extends Component {
   state = {
     optionOneText: "",
-    optionTwoText: ""
+    optionTwoText: "",
+    toHome: false
   };
 
   handleChange = e => {
@@ -35,15 +37,20 @@ class NewQuestion extends Component {
 
     this.setState(() => ({
       optionOneText: "",
-      optionTwoText: ""
+      optionTwoText: "",
+      toHome: true
     }));
   };
 
   render() {
-    const { optionOneText, optionTwoText } = this.state;
+    const { optionOneText, optionTwoText, toHome } = this.state;
 
     const optionOneTextLeft = 60 - optionOneText.length;
     const optionTwoTextLeft = 60 - optionTwoText.length;
+
+    if (toHome === true) {
+      return <Redirect to="/home" />;
+    }
 
     return (
       <div className="form-container center">

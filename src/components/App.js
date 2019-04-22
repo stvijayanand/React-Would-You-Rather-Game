@@ -9,11 +9,12 @@ import LeaderBoard from "./LeaderBoard";
 import Nav from "./Nav"
 import Login from "./Login";
 import { BrowserRouter, Route, Switch} from "react-router-dom";
+import { NotFound } from "./NotFound";
 
 const CatchAll = ({ location }) => (
   <div>
     <h3>
-      No match for <code>{location.pathname}</code>
+       404: <code>{location.pathname}</code> Not Found.
     </h3>
   </div>
 );
@@ -44,6 +45,7 @@ class App extends Component {
                   <Route path="/questions/:id" component={Question} />
                   <Route path="/add" component={NewQuestion} />
                   <Route path="/leaderboard" component={LeaderBoard} />
+                  <Route path="/404" component={NotFound} />
                   <Route component={CatchAll} />
                 </Switch>
               </div>

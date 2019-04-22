@@ -6,20 +6,27 @@ import AnsweredQuestion from "./AnsweredQuestion";
 import { withRouter, Redirect } from "react-router-dom";
 
 class Question extends Component {
-  // componentWillMount(){
-  //   const {authedUser} = this.props; 
-
-  //   if(authedUser === null){
-  //     this.props.history.push('/');
-  //    }
-  // }
-
   render() {
-    const { id, authedUser, question } = this.props;
-    
+    const { id, authedUser, questions, users } = this.props;
+
+    //If not a valid question id, redirect to 404
+    let question = questions[id];
+    if(question){
+      question = formatQuestion(questions[id], users[questions[id].author], authedUser);
+    }
+    else{
+      question = null;
+    }
+
+    if(question === null){
+      return <Redirect to="/404" />;
+    }
+
+    //if not logged in, redirect to login
     if(authedUser === null){
       return <Redirect to="/" />;
     }
+
 
     if (
       question.optionOneVotes.includes(authedUser) ||
@@ -46,9 +53,8 @@ const mapStateToProps = ({ authedUser, questions, users }, props) => {
   return {
     id,
     authedUser,
-    question: questions[id]
-      ? formatQuestion(questions[id], users[questions[id].author], authedUser)
-      : null
+    questions,
+    users
   };
 };
 

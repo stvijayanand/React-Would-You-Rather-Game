@@ -157,6 +157,7 @@ li {
 .form-container {
   border: 1px solid #dad7d7;
   margin: 20px 20% 0 20%;
+  padding: 10px;
 }
 
 .form {
@@ -233,4 +234,10 @@ li {
   display: inline-block;
   margin-left: 10px;
   color: white;
+}
+
+.login-container {
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
 }

@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { setAuthedUser } from "../actions/authedUser";
+import { Redirect } from "react-router-dom";
 
 class Login extends Component {
   state = {
-    userId: "tylermcginnis"
+    userId: "tylermcginnis",
+    toHome: false
   };
 
   handleUsernameChange = e => {
@@ -14,13 +16,23 @@ class Login extends Component {
   handleSignIn = e => {
     e.preventDefault();
     const { dispatch } = this.props;
+    const { userId } = this.state;
 
-    dispatch(setAuthedUser(this.state.userId));
+    dispatch(setAuthedUser(userId));
+
+    this.setState(prevState => ({
+      ...prevState,
+      toHome: true
+    }));
   };
 
   render() {
-    const { userId } = this.state;
+    const { userId, toHome } = this.state;
     const { users } = this.props;
+
+    if (toHome === true) {
+      return <Redirect to="/home" />;
+    }
 
     return (
       <div className="login-container">

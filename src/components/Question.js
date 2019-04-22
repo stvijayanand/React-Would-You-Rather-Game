@@ -3,10 +3,23 @@ import { connect } from "react-redux";
 import { formatQuestion } from "../utils/helpers";
 import UnansweredQuestion from "./UnansweredQuestion";
 import AnsweredQuestion from "./AnsweredQuestion";
+import { withRouter, Redirect } from "react-router-dom";
 
 class Question extends Component {
+  // componentWillMount(){
+  //   const {authedUser} = this.props; 
+
+  //   if(authedUser === null){
+  //     this.props.history.push('/');
+  //    }
+  // }
+
   render() {
     const { id, authedUser, question } = this.props;
+    
+    if(authedUser === null){
+      return <Redirect to="/" />;
+    }
 
     if (
       question.optionOneVotes.includes(authedUser) ||
@@ -39,4 +52,4 @@ const mapStateToProps = ({ authedUser, questions, users }, props) => {
   };
 };
 
-export default connect(mapStateToProps)(Question);
+export default withRouter(connect(mapStateToProps)(Question));

@@ -43,14 +43,20 @@ class NewQuestion extends Component {
   };
 
   render() {
-    const { optionOneText, optionTwoText, toHome } = this.state;
+    const {authedUser} = this.props; 
 
-    const optionOneTextLeft = 60 - optionOneText.length;
-    const optionTwoTextLeft = 60 - optionTwoText.length;
+    if(authedUser === null){
+      return <Redirect to="/" />;
+    }
+
+    const { optionOneText, optionTwoText, toHome } = this.state;
 
     if (toHome === true) {
       return <Redirect to="/home" />;
     }
+
+    const optionOneTextLeft = 60 - optionOneText.length;
+    const optionTwoTextLeft = 60 - optionTwoText.length;
 
     return (
       <div className="form-container center">
@@ -103,4 +109,10 @@ class NewQuestion extends Component {
   }
 }
 
-export default connect()(NewQuestion);
+const mapStateToProps = ({ authedUser }) => {
+  return {
+    authedUser
+  };
+};
+
+export default connect(mapStateToProps)(NewQuestion);

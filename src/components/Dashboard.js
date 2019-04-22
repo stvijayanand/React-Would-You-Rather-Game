@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import QuestionSummary from "./QuestionSummary";
+import { Redirect } from "react-router-dom";
 
 const UNANSWERED_POLLS = "Unanswered Polls";
 const ANSWERED_POLLS = "Answered Polls";
@@ -17,6 +18,12 @@ class Dashboard extends Component {
   };
 
   render() {
+    const {authedUser} = this.props; 
+
+    if(authedUser === null){
+      return <Redirect to="/" />;
+    }
+
     const { unansweredQuestionIds, answeredQuestionIds } = this.props;
     const { selectedOption } = this.state;
 
@@ -84,6 +91,7 @@ const mapStateToProps = ({ questions, authedUser }) => {
   );
 
   return {
+    authedUser,
     unansweredQuestionIds: unansweredQuestions
       .map(uq => uq.id)
       .sort((a, b) => questions[b].timestamp - questions[a].timestamp),

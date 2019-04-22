@@ -6,8 +6,9 @@ import DashBoard from "./Dashboard";
 import NewQuestion from "./NewQuestion";
 import Question from "./Question";
 import LeaderBoard from "./LeaderBoard";
+import Nav from "./Nav"
 import Login from "./Login";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Switch} from "react-router-dom";
 
 const CatchAll = ({ location }) => (
   <div>
@@ -23,12 +24,18 @@ class App extends Component {
   }
 
   render() {
+    const {authedUser} = this.props;
+
     return (
       <BrowserRouter>
         <Fragment>
           <LoadingBar />
           <div className="container">
-            {/* <Nav /> */}
+
+          {(authedUser !== null) && (
+            <Nav />
+          )}
+            
             {this.props.loading === true ? null : (
               <div>
                 <Switch>
@@ -48,9 +55,10 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = ({ questions, users }) => {
+const mapStateToProps = ({ questions, users, authedUser }) => {
   return {
-    loading: questions === null || users === null
+    loading: questions === null || users === null,
+    authedUser
   };
 };
 

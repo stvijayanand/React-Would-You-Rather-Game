@@ -1,19 +1,25 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { setAuthedUser } from "../actions/authedUser";
 
 class Login extends Component {
   state = {
-    userName: ""
+    userId: "tylermcginnis"
   };
 
-  handleUsernameChange = e => {};
+  handleUsernameChange = e => {
+    this.setState({ userId: e.target.value });
+  };
 
   handleSignIn = e => {
     e.preventDefault();
+    const { dispatch } = this.props;
+
+    dispatch(setAuthedUser(this.state.userId));
   };
 
   render() {
-    const { userName } = this.state;
+    const { userId } = this.state;
     const { users } = this.props;
 
     return (
@@ -22,7 +28,7 @@ class Login extends Component {
           <h3>Login</h3>
           <form className="form" onSubmit={this.handleSignIn}>
             <div className="form-row">
-              <select value={userName} onChange={this.handleUsernameChange}>
+              <select value={userId} onChange={this.handleUsernameChange}>
                 {Object.keys(users).map(uid => (
                   <option key={uid} value={uid}>
                     {users[uid].name}
@@ -31,11 +37,7 @@ class Login extends Component {
               </select>
             </div>
 
-            <button
-              className="btn-new"
-              type="submit"
-              disabled={userName === ""}
-            >
+            <button className="btn-new" type="submit">
               Sign In
             </button>
           </form>

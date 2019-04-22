@@ -23,9 +23,9 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = ({ questions }) => {
+const mapStateToProps = ({ questions, users }) => {
   return {
-    loading: questions === null
+    loading: questions === null || users === null
   };
 };
 

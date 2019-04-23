@@ -9,7 +9,7 @@ export function setAuthedUser(id) {
 }
 
 export const userLogout = () => {
-  return{
+  return {
     type: USER_LOGOUT
   }
 }

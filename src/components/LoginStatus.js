@@ -5,6 +5,7 @@ import { userLogout } from "../actions/authedUser";
 
 const LoginStatus = function (props) {
     const {dispatch, userName} = props;
+    const hrefLink = "#";
 
     const handleLogout = e => {
         e.preventDefault();
@@ -19,7 +20,7 @@ const LoginStatus = function (props) {
             <span>Hello, {userName}</span>
             <span className="login-status-link">
                 <a 
-                href="#" 
+                href={hrefLink} 
                 onClick={handleLogout}>
                     Logout
                 </a>

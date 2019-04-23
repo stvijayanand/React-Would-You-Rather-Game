@@ -28,9 +28,9 @@ class Login extends Component {
 
   render() {
     const { userId, toHome } = this.state;
-    const { users } = this.props;
+    const { users, authedUser } = this.props;
 
-    if (toHome === true) {
+    if ((toHome === true)|| authedUser) {
       return <Redirect to="/home" />;
     }
 
@@ -59,9 +59,10 @@ class Login extends Component {
   }
 }
 
-const mapStateToProps = ({ users }) => {
+const mapStateToProps = ({ users, authedUser }) => {
   return {
-    users
+    users,
+    authedUser
   };
 };
 

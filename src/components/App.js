@@ -59,7 +59,8 @@ class App extends Component {
 
 const mapStateToProps = ({ questions, users, authedUser }) => {
   return {
-    loading: questions === null || users === null,
+    loading: questions === null 
+            || users === null,
     authedUser
   };
 };

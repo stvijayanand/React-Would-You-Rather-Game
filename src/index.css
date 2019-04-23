@@ -7,7 +7,7 @@ body {
 
 a {
   text-decoration: none;
-  color: #252525;
+  color: blue;
 }
 
 .container {
@@ -240,4 +240,13 @@ li {
   width: 50%;
   margin-left: auto;
   margin-right: auto;
+}
+
+.login-status{
+  position: relative;
+  left: 400px;
+}
+
+.login-status-link {
+  margin-left: 10px;
 }

@@ -18,10 +18,17 @@ class Dashboard extends Component {
   };
 
   render() {
-    const {authedUser} = this.props; 
+    const { authedUser } = this.props;
 
-    if(authedUser === null){
-      return <Redirect to="/" />;
+    if (authedUser === null) {
+      return (
+        <Redirect
+          to={{
+            pathname: "/",
+            state: { referrer: this.props.location }
+          }}
+        />
+      );
     }
 
     const { unansweredQuestionIds, answeredQuestionIds } = this.props;

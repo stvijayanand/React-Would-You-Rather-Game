@@ -5,12 +5,18 @@ import { Redirect } from "react-router-dom";
 
 class LeaderBoard extends Component {
   render() {
-    const {authedUser} = this.props; 
+    const { authedUser } = this.props;
 
-    if(authedUser === null){
-      return <Redirect to="/" />;
+    if (authedUser === null) {
+      return (
+        <Redirect
+          to={{
+            pathname: "/",
+            state: { referrer: this.props.location }
+          }}
+        />
+      );
     }
-    
     const { userScores } = this.props;
 
     return (

@@ -5,8 +5,7 @@ import { Redirect } from "react-router-dom";
 
 class Login extends Component {
   state = {
-    userId: "tylermcginnis",
-    toHome: false
+    userId: "tylermcginnis"
   };
 
   handleUsernameChange = e => {
@@ -19,19 +18,18 @@ class Login extends Component {
     const { userId } = this.state;
 
     dispatch(setAuthedUser(userId));
-
-    this.setState(prevState => ({
-      ...prevState,
-      toHome: true
-    }));
   };
 
   render() {
-    const { userId, toHome } = this.state;
+    const { userId } = this.state;
     const { users, authedUser } = this.props;
 
-    if ((toHome === true)|| authedUser) {
-      return <Redirect to="/home" />;
+    const referrer = this.props.location.state
+      ? this.props.location.state.referrer
+      : "/home";
+
+    if (authedUser) {
+      return <Redirect to={referrer} />;
     }
 
     return (

@@ -43,15 +43,22 @@ class NewQuestion extends Component {
   };
 
   render() {
-    const {authedUser} = this.props; 
+    const { authedUser } = this.props;
 
-    if(authedUser === null){
-      return <Redirect to="/" />;
+    if (authedUser === null) {
+      return (
+        <Redirect
+          to={{
+            pathname: "/",
+            state: { referrer: this.props.location }
+          }}
+        />
+      );
     }
 
     const { optionOneText, optionTwoText, toHome } = this.state;
 
-    if (toHome === true) {
+    if (toHome === true && authedUser) {
       return <Redirect to="/home" />;
     }
 
